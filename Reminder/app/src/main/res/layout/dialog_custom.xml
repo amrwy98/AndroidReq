@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editAddLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4CAF50">
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="97dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="68dp"
+        android:onClick="close"
+        android:text="Cancel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reminderEditText" />
+
+    <EditText
+        android:id="@+id/reminderEditText"
+        android:layout_width="416dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#00333131"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.148"
+        tools:layout_editor_absoluteX="-3dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="407dp"
+        android:layout_height="54dp"
+        android:text="New Reminder"
+        android:textSize="32dp"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="41dp" />
+
+    <Button
+        android:id="@+id/commit"
+        android:layout_width="97dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="addItems"
+        android:text="Commit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toEndOf="@+id/cancel"
+        app:layout_constraintTop_toBottomOf="@+id/reminderEditText" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="279dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="8dp"
+        android:text="Important"
+        app:layout_constraintBottom_toTopOf="@+id/cancel"
+        app:layout_constraintTop_toBottomOf="@+id/reminderEditText"
+        app:layout_constraintVertical_bias="0.655"
+        tools:layout_editor_absoluteX="30dp" />
+
+</android.support.constraint.ConstraintLayout>
