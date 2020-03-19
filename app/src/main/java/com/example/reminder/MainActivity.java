@@ -109,16 +109,17 @@ public class MainActivity extends AppCompatActivity {
 
                     //TODO:DELETE ITEM HERE
                     cursor.moveToPosition(listItemIndex);
-                    Reminder reminder = remindersDbAdapter.fetchReminderById(cursor.getInt(0));
-                    remindersDbAdapter.deleteReminderById(reminder.getId());
+                   // Reminder reminder = remindersDbAdapter.fetchReminderById(cursor.getInt(0));
+                    remindersDbAdapter.deleteReminderById(cursor.getInt(0));
                     cursor=remindersDbAdapter.fetchAllReminders();
                     cursor.moveToFirst();
-                    remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(MainActivity.this,
-                            R.layout.row,
-                            cursor,
-                            new String[] {RemindersDbAdapter.COL_CONTENT},
-                            new int[]{R.id.content},
-                            0);
+//                    remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(MainActivity.this,
+//                            R.layout.row,
+//                            cursor,
+//                            new String[] {RemindersDbAdapter.COL_CONTENT},
+//                            new int[]{R.id.content},
+//                            0);
+                    remindersSimpleCursorAdapter.changeCursor(cursor);
                     myView.setAdapter(remindersSimpleCursorAdapter);
                     //////////////////////////////////////
                     dialog.cancel();
@@ -171,12 +172,13 @@ public class MainActivity extends AppCompatActivity {
                 //myReminders.add(reminderText);
                 cursor=remindersDbAdapter.fetchAllReminders();
                 cursor.moveToFirst();
-                remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(MainActivity.this,
-                        R.layout.row,
-                        cursor,
-                        new String[] {RemindersDbAdapter.COL_CONTENT},
-                        new int[]{R.id.content},
-                        0);
+//                remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(MainActivity.this,
+//                        R.layout.row,
+//                        cursor,
+//                        new String[] {RemindersDbAdapter.COL_CONTENT},
+//                        new int[]{R.id.content},
+//                        0);
+                remindersSimpleCursorAdapter.changeCursor(cursor);
                 myView.setAdapter(remindersSimpleCursorAdapter);
                 ////////////////////////////////////////////
             }
@@ -197,12 +199,13 @@ public class MainActivity extends AppCompatActivity {
                 remindersDbAdapter.updateReminder(reminder);
                 cursor=remindersDbAdapter.fetchAllReminders();
                 cursor.moveToFirst();
-                remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(MainActivity.this,
-                        R.layout.row,
-                        cursor,
-                        new String[] {RemindersDbAdapter.COL_CONTENT},
-                        new int[]{R.id.content},
-                        0);
+//                remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(MainActivity.this,
+//                        R.layout.row,
+//                        cursor,
+//                        new String[] {RemindersDbAdapter.COL_CONTENT},
+//                        new int[]{R.id.content},
+//                        0);
+                remindersSimpleCursorAdapter.changeCursor(cursor);
                 myView.setAdapter(remindersSimpleCursorAdapter);
                 ////////////////////////////////////////////
             }
