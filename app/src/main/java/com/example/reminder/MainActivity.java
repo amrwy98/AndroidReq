@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     //THIS IS THE ARRAYADAPTER I USED TO CONNECT THE ARRAYLIST WITH THE LIST VIEW,IN YOUR CASE, YOU'LL USE SOMETHING CALLED CURSOR ADAPTER
     /////////////////////////////////////
-    //TODO: Is Important law fel edit 5ala 7aga mesh important
+    //TODO: Is Important law fel edit 5ala 7aga mesh important DONE
     /////////////////////////////////////
     RemindersDbAdapter remindersDbAdapter;
     RemindersSimpleCursorAdapter remindersSimpleCursorAdapter;
+    //TODO:1
     Cursor cursor;
     ListView alertView;
     int listItemIndex;
@@ -49,12 +50,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //-----------DB Initialization---------
+        //TODO 2-----------DB Initialization---------
         remindersDbAdapter = new RemindersDbAdapter(this);
         remindersDbAdapter.open();
         //-------------------------------------
         //-------------------------------------
         //ArrayAdapter<String> arrayAdapter;
+        //TODO 2.1 Cursor INIT
         cursor = remindersDbAdapter.fetchAllReminders();
         remindersSimpleCursorAdapter = new RemindersSimpleCursorAdapter(this,
                 R.layout.row,cursor,new String[] {RemindersDbAdapter.COL_CONTENT},new int[]{R.id.content},0);
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         //CONNECTING THE ADAPTER WITH THE LIST VIEW
         ///////////////////////////////////////
         //myView.setAdapter(arrayAdapter);
-        //TODO: hena zabat el adapter enno yeb2a lel Cursor
+        //TODO: 3 hena zabat el adapter enno yeb2a lel Cursor
         myView.setAdapter(remindersSimpleCursorAdapter);
         ///////////////////////////////////////
 
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     //NOTE THAT THE VARIABLE (listitemindex) WILL CONTAIN THE INDEX OF THE ITEM TO BE DELETED IN THE LIST VIEW
                     ///////////////////////////////////////
 
-                    //TODO:DELETE ITEM HERE
+                    //TODO: 4 DELETE ITEM HERE
                     cursor.moveToPosition(listItemIndex);
                    // Reminder reminder = remindersDbAdapter.fetchReminderById(cursor.getInt(0));
                     remindersDbAdapter.deleteReminderById(cursor.getInt(0));
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 //HERE YOU'LL ADD THE ITEM TO YOUR DATABASE AND TAKE ANY NECESSARY STEPS (if there are any) TO MAKE IT APPEAR IN THE LISTVIEW
                 //YOU CAN DELETE THESE 2 FUNCTION CALLS AS THEY ARE RELATED TO THE ARRAY IMPLEMENTATION
                 ////////////////////////////////////////////
-                //TODO: ADD
+                //TODO: 5 ADD
                 remindersDbAdapter.createReminder(reminderText,isImportant);
                 //myReminders.add(reminderText);
                 cursor=remindersDbAdapter.fetchAllReminders();
@@ -188,14 +190,15 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 String reminderText = data.getStringExtra("resultText"); //this is the new string to be added to the database
                 boolean isImportant = data.getBooleanExtra("isImportant",false); //this indicates whether he checked the checkbox or not
-                //TODO: EDIT
+                //TODO: 7 EDIT
                 //(HERE YOU WILL EDIT THE EXISTING TEXT RATHER THAN ADD A NEW ONE)
                 //NOTE THAT THE VARIABLE (listitemindex) WILL CONTAIN THE INDEX OF THE ITEM TO BE EDITED IN THE LIST VIEW
                 ////////////////////////////////////////////
                 cursor.moveToPosition(listItemIndex);
-                Reminder reminder = remindersDbAdapter.fetchReminderById(cursor.getInt(0));
-                reminder.setContent(reminderText);
-                reminder.setImportant(isImportant?1:0);
+                Reminder reminder =new Reminder(cursor.getInt(0),reminderText,isImportant?1:0);
+                //remindersDbAdapter.fetchReminderById(cursor.getInt(0));
+                //reminder.setContent(reminderText);
+                //reminder.setImportant(isImportant?1:0);
                 remindersDbAdapter.updateReminder(reminder);
                 cursor=remindersDbAdapter.fetchAllReminders();
                 cursor.moveToFirst();
